@@ -8,7 +8,8 @@
     "lint:fix": "eslint --fix .",
     "format:check": "prettier --check \"**/*.{js,ts,json}\" --log-level=warn",
     "format:fix": "prettier --write \"**/*.{js,ts,json}\"",
-    "test": "npx playwright test"
+    "test": "npx playwright test",
+    "test:smoke": "npx playwright test --grep @smoke"
   },
   "keywords": [],
   "author": "",
