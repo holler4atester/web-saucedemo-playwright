@@ -22,14 +22,19 @@ cd web-saucedemo-playwright
 npm install
 ```
 
-## Run tests
+## Run smoke tests
 
 ```
 npm run test:smoke
 ```
 
-```
-npm run test
-```
+## Contribute and maintain
+
+The project is set up with Husky pre commit hooks to Git repo, where validation checks will be run on commit. 
+
+The validation will check for pretty format & lint issues based on some rudimentary rules. 
+
+If error, please use `lint:fix` or `format:fix` to resolve any highlighted issues. 
+
 
 
