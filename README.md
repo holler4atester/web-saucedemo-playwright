@@ -28,6 +28,15 @@ npm install
 npm run test:smoke
 ```
 
+## Generate and view HTML reports
+HTML reports are available after each run, with default configuration 
+The smoke test case itself has been organised with Test Steps logic, for clearer reporting detail 
+To see the report for the latest run, execute: 
+
+```
+npm run generate:report
+```
+
 ## Contribute and maintain
 
 The project is set up with Husky pre commit hooks to Git repo, where validation checks will be run on commit. 
