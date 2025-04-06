@@ -21,7 +21,7 @@ export class CartPage extends BasePage {
     await expect(this.page.locator('.inventory_item_price')).toHaveText(expectedPrice)
   }
 
-  async navigateToCheckout() {
+  async proceedToCheckout() {
     await this.checkoutButton.click()
   }
 }

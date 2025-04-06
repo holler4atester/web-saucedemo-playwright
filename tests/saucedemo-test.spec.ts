@@ -27,18 +27,19 @@ test(
     await loginPage.login('standard_user', 'secret_sauce')
     await itemsPage.verifyNavigationToItemsList()
 
-    // Add 3rd (or random, later?) item to cart
+    // Select actual random index, later? --> item to cart
     const { name: itemName, price: itemPrice } = await itemsPage.addItemToCart(2)
 
     // Verify same item appears in cart
-    await itemsPage.navigateToCart()
+    await itemsPage.proceedToCart()
     await cartPage.verifyNavigationToCart()
     await cartPage.verifyItemInCart(itemName, itemPrice)
 
     // Go to checkout
-    await cartPage.navigateToCheckout()
+    await cartPage.proceedToCheckout()
     await checkoutPage.verifyNavigationToCheckout()
     await checkoutPage.fillForm('Holler4a', 'Tester', '3000')
+    await checkoutPage.proceedToCheckout()
 
     // Review before completing
     await checkoutOverviewPage.verifyNavigationToCheckoutOverview()

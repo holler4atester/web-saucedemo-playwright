@@ -31,7 +31,7 @@ export class ItemsPage extends BasePage {
   }
 
   // forward nav option
-  async navigateToCart() {
+  async proceedToCart() {
     await this.page.locator('a.shopping_cart_link').click()
   }
 }

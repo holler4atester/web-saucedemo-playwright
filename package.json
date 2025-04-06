@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint .",
+    "lint:check": "eslint .",
     "lint:fix": "eslint --fix .",
     "format:check": "prettier --check \"**/*.{js,ts,json}\" --log-level=warn",
     "format:fix": "prettier --write \"**/*.{js,ts,json}\"",
+    "validate": "npm run lint:check && npm run format:check",
+    "prepare": "husky",
     "test": "npx playwright test",
     "test:smoke": "npx playwright test --grep @smoke"
   },
@@ -19,6 +21,7 @@
     "@types/node": "^22.13.17",
     "eslint": "^9.24.0",
     "eslint-plugin-playwright": "^2.2.0",
+    "husky": "^9.1.7",
     "prettier": "^3.5.3"
   }
 }
