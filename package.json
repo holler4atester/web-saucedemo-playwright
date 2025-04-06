@@ -11,7 +11,8 @@
     "validate": "npm run lint:check && npm run format:check",
     "prepare": "husky",
     "test": "npx playwright test",
-    "test:smoke": "npx playwright test --grep @smoke"
+    "test:smoke": "npx playwright test --grep @smoke",
+    "generate:report": "npx playwright show-report"
   },
   "keywords": [],
   "author": "",

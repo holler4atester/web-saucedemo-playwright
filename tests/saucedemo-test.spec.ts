@@ -22,32 +22,42 @@ test(
     const checkoutOverviewPage = new CheckoutOverviewPage(page)
     const finishPage = new FinishPage(page)
 
-    // Login
-    await loginPage.navigate()
-    await loginPage.login('standard_user', 'secret_sauce')
-    await itemsPage.verifyNavigationToItemsList()
+    await test.step('Login to Sauce Demo', async () => {
+      await loginPage.navigate()
+      await loginPage.login('standard_user', 'secret_sauce')
+      await itemsPage.verifyNavigationToItemsList()
+    })
 
     // Select actual random index, later? --> item to cart
-    const { name: itemName, price: itemPrice } = await itemsPage.addItemToCart(2)
+    let itemName, itemPrice
+    await test.step('Add 3rd item to cart', async () => {
+      const result = await itemsPage.addItemToCart(2)
+      itemName = result.name
+      itemPrice = result.price
+    })
 
-    // Verify same item appears in cart
-    await itemsPage.proceedToCart()
-    await cartPage.verifyNavigationToCart()
-    await cartPage.verifyItemInCart(itemName, itemPrice)
+    await test.step('Verify same item appears in cart', async () => {
+      await itemsPage.proceedToCart()
+      await cartPage.verifyNavigationToCart()
+      await cartPage.verifyItemInCart(itemName, itemPrice)
+    })
 
-    // Go to checkout
-    await cartPage.proceedToCheckout()
-    await checkoutPage.verifyNavigationToCheckout()
-    await checkoutPage.fillForm('Holler4a', 'Tester', '3000')
-    await checkoutPage.proceedToCheckout()
+    await test.step('Complete checkout information and go to checkout', async () => {
+      await cartPage.proceedToCheckout()
+      await checkoutPage.verifyNavigationToCheckout()
+      await checkoutPage.fillForm('Holler4a', 'Tester', '3000')
+      await checkoutPage.proceedToCheckout()
+    })
 
-    // Review before completing
-    await checkoutOverviewPage.verifyNavigationToCheckoutOverview()
-    await checkoutOverviewPage.verifyItemInCheckout(itemName, itemPrice)
-    await checkoutOverviewPage.verifyTotalGreaterThanItemPrice(itemPrice)
-    await checkoutOverviewPage.completeOrder()
+    await test.step('Verify checkout overview and complete order', async () => {
+      await checkoutOverviewPage.verifyNavigationToCheckoutOverview()
+      await checkoutOverviewPage.verifyItemInCheckout(itemName, itemPrice)
+      await checkoutOverviewPage.verifyTotalGreaterThanItemPrice(itemPrice)
+      await checkoutOverviewPage.completeOrder()
+    })
 
-    // Finish
-    await finishPage.verifyNavigationToFinish()
+    await test.step('Complete order and verify order completion', async () => {
+      await finishPage.verifyNavigationToFinish()
+    })
   },
 )
